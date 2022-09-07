@@ -13,34 +13,39 @@ import {
   Stats,
 } from "./resrauranr-info-card.styles";
 
-export const RestaurantsInfoCard = ({ restaurants = {} }) => {
+export const RestaurantsInfoCard = ({ restaurant }) => {
   const {
     name = "Some Restaurant",
     photos = ["https://media.timeout.com/images/105499923/750/422/image.jpg"],
-    address = "Jagerstraat 7D",
+    vicinity = "Jagerstraat 7D",
     isOpenNow = false,
     rating = 4,
-  } = restaurants;
+  } = restaurant;
 
-  const ratingArray = Array.from(new Array(rating));
+  const ratingArray = Array.from(new Array(5));
   return (
     <RestaurantCard>
-      <RestaurantCover source={{ uri: photos[0] }} />
+      <RestaurantCover source={{ uri: restaurant.photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Title>{restaurant.name}</Title>
         <Stats>
           <StarRow>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, index) => (
+              <SvgXml
+                key={`Star-${restaurant.placeId}-${index}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </StarRow>
-          {isOpenNow ? (
+          {restaurant.isOpenNow ? (
             <SvgXml xml={open} width={20} height={20} />
           ) : (
             <Text variant="error">Closed</Text>
           )}
         </Stats>
-        <Address>{address}</Address>
+        <Address>{restaurant.vicinity}</Address>
       </Info>
     </RestaurantCard>
   );
