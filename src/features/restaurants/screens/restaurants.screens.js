@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { RestaurantsInfoCard } from "../componets/restruant-info.componemt-card";
 import { SafeAreaViewHome } from "../../../components/safeArea";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.contex";
@@ -13,7 +13,7 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantContext);
   if (isLoading) {
     return (
@@ -32,9 +32,11 @@ export const RestaurantsScreen = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("RestaurantDetails", item)}
+            >
               <RestaurantsInfoCard restaurant={item} />
-            </>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(Item) => Item.name}
