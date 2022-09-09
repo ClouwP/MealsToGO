@@ -3,6 +3,8 @@ import { Text } from "../componets/typography/text.componet";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Favourite } from "../../maps/componts/favourit/favourite.Icon";
+import { View } from "react-native";
 import {
   RestaurantCard,
   RestaurantCover,
@@ -14,18 +16,13 @@ import {
 } from "./resrauranr-info-card.styles";
 
 export const RestaurantsInfoCard = ({ restaurant }) => {
-  const {
-    name = "Some Restaurant",
-    photos = ["https://media.timeout.com/images/105499923/750/422/image.jpg"],
-    vicinity = "Jagerstraat 7D",
-    isOpenNow = false,
-    rating = 4,
-  } = restaurant;
-
   const ratingArray = Array.from(new Array(5));
   return (
-    <RestaurantCard>
-      <RestaurantCover source={{ uri: restaurant.photos[0] }} />
+    <RestaurantCard elevation={5}>
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestaurantCover source={{ uri: restaurant.photos[0] }} />
+      </View>
       <Info>
         <Title>{restaurant.name}</Title>
         <Stats>

@@ -5,7 +5,7 @@ import { Text } from "react-native";
 import { SafeAreaViewHome } from "../../components/safeArea";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { MapScreen } from "../../features/maps/screens/map.screen";
-
+import { Settings } from "../../features/settings/screens/settings.screen";
 import { RestaurantNavigator } from "./restaurants.navigator";
 
 const Tab = createBottomTabNavigator();
@@ -15,12 +15,6 @@ const TabIcon = {
   Settings: "md-settings",
   Maps: "md-map",
 };
-
-const Settings = () => (
-  <SafeAreaViewHome>
-    <Text>Settings</Text>
-  </SafeAreaViewHome>
-);
 
 const tabBarIcon =
   (iconName) =>
